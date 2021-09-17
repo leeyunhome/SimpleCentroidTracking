@@ -1,4 +1,5 @@
 #include <iostream>
+#include "centroidtracker.h"
 #include <opencv2/dnn.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
@@ -6,12 +7,13 @@
 using namespace cv;
 using namespace std;
 
-void calcCentroid(int, int, int, int, int* a, int* b);
+//void calcCentroid(int, int, int, int, int* a, int* b);
 
 int main()
 {
 	//printf("SimpleCentroidTracking");
 	std::cout << "SimpleCentroidTracker" << std::endl;
+	auto centroidTracker = new CentroidTracker(20);
 
 	VideoCapture cap(0);
 
@@ -56,15 +58,28 @@ int main()
 				int centroid_x = 0;
 				int centroid_y = 0;
 
-				calcCentroid(xLeftTop, yLeftTop, xRightBottom, yRightBottom, &centroid_x, &centroid_y);
+				//calcCentroid(xLeftTop, yLeftTop, xRightBottom, yRightBottom, &centroid_x, &centroid_y);
 
-				Rect object((int)xLeftTop, (int)yLeftTop, (int)(xRightBottom - yRightBottom),
+				Rect object((int)xLeftTop, (int)yLeftTop, (int)(xRightBottom - xLeftTop),
 					(int)(yRightBottom - yLeftTop));
 
-				drawMarker(cameraFrame, Point(centroid_x, centroid_y), Scalar(255, 0, 0), MARKER_SQUARE);
+				//drawMarker(cameraFrame, Point(centroid_x, centroid_y), Scalar(255, 0, 0), MARKER_SQUARE);
 				rectangle(cameraFrame, object, Scalar(0, 255, 0), 2);
 
 				boxes.insert(boxes.end(), { xLeftTop, yLeftTop, xRightBottom, yRightBottom });
+			}
+		}
+
+		auto objects = centroidTracker->update(boxes);
+
+		if (!objects.empty())
+		{
+			for (auto obj : objects)
+			{
+				circle(cameraFrame, Point(obj.second.first, obj.second.second), 4, Scalar(255, 0, 0), -1);
+				string ID = std::to_string(obj.first);
+				cv::putText(cameraFrame, ID, Point(obj.second.first - 10, obj.second.second - 10),
+					FONT_HERSHEY_COMPLEX, 0.5, Scalar(0, 255, 0), 2);
 			}
 		}
 		imshow("Detection", cameraFrame);
@@ -77,11 +92,11 @@ int main()
 	return 0;
 }
 
-void calcCentroid(int xLeftTop, int yLeftTop, int xRightBottom, int yRightBottom, int* a, int* b)
-{
-	*a = xLeftTop + (xRightBottom - xLeftTop) * 0.5;
-	*b = yLeftTop + (yRightBottom - yLeftTop) * 0.5;
-
-	return;
-}
+//void calcCentroid(int xLeftTop, int yLeftTop, int xRightBottom, int yRightBottom, int* a, int* b)
+//{
+//	*a = xLeftTop + (xRightBottom - xLeftTop) * 0.5;
+//	*b = yLeftTop + (yRightBottom - yLeftTop) * 0.5;
+//
+//	return;
+//}
 
