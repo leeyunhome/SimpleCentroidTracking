@@ -14,7 +14,7 @@ typedef struct _object
 
 typedef struct _object_tracker
 {
-	Object* objects;
+	Object objects[MAX_OBJECT];
 	int maxDisappeared;
 	int nextObjectID;
 	

@@ -76,7 +76,18 @@ int main()
 			}
 		}
 
-		std::cout << typeid(boxes).name() << endl;
+		//std::cout << typeid(boxes).name() << endl;
+		
+		for (auto b : boxes)
+		{
+			int cX = int((b[0] + b[2]) * 0.5);
+			int cY = int((b[1] + b[3]) * 0.5);
+			ot.objects->x1 = cX;
+			//inputCentroids.push_back(make_pair(cX, cY));
+		}
+
+		printf("ot.objects->x1 : %f\n", ot.objects->x1);
+
 		//ot.objects->x1 = boxes.;
 		
 		/*auto objects = centroidTracker->update(boxes);
