@@ -15,15 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="main.cpp_orig">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="centroidtracker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="centroidtracker_c.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="centroidtracker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="centroidtracker_c.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
