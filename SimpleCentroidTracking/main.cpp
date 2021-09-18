@@ -78,18 +78,23 @@ int main()
 
 		//std::cout << typeid(boxes).name() << endl;
 		
+		// 바운딩 박스를 하나씩 꺼내서 중심(centroid) 계산
 		for (auto b : boxes)
 		{
 			int cX = int((b[0] + b[2]) * 0.5);
 			int cY = int((b[1] + b[3]) * 0.5);
-			ot.objects->x1 = cX;
+			ot.objects->cX = cX;
+			ot.objects->cY = cY;
 			//inputCentroids.push_back(make_pair(cX, cY));
 		}
 
-		printf("ot.objects->x1 : %f\n", ot.objects->x1);
-
-		//ot.objects->x1 = boxes.;
+		printf("ot.objects->cX : %f, ot.objects->cY : %f\n", ot.objects->cX, ot.objects->cY);
 		
+		circle(cameraFrame, Point(ot.objects->cX, ot.objects->cY), 4, Scalar(255, 0, 0), -1);
+		//string ID = std::to_string(obj.first);
+		//cv::putText(cameraFrame, ID, Point(obj.second.first - 10, obj.second.second - 10),
+		//	FONT_HERSHEY_COMPLEX, 0.5, Scalar(0, 255, 0), 2);
+
 		/*auto objects = centroidTracker->update(boxes);
 
 		if (!objects.empty())
