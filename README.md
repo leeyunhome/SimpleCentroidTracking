@@ -1,5 +1,8 @@
 # SimpleCentroidTracking
 
+09/19/2021
+![image](https://user-images.githubusercontent.com/59910227/133920359-0638ba3b-9f1b-455f-a67a-0d55b763b56b.png)
+
 09/18/2021
 c style implememtation for printing centroids of bbox for an object
 ![image](https://user-images.githubusercontent.com/59910227/133883808-fe3bb2d3-13f7-407d-bc58-19bdda690a8f.png)
