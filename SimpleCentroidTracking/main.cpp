@@ -137,6 +137,7 @@ int main()
 				objectCentroids.push_back(make_pair(object.second.first, object.second.second));
 				const int max_string = 50;
 				char ID[max_string];
+				circle(cameraFrame, Point(object.second.first, object.second.second), 4, Scalar(255, 0, 0), -1);
 				sprintf(ID, "ID: %d", object.first);
 				std::cout << "ID : " << ID << std::endl;
 				cv::putText(cameraFrame, ID, Point(object.second.first - 10, object.second.second - 10),
