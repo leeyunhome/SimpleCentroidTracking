@@ -12,7 +12,7 @@ double calcDistance(ObjectTracker* ot)
 
 void update(vector<vector<int>> boxes, ObjectTracker* ot)
 {
-	if (boxes.empty())
+	/*if (boxes.empty())
 	{
 		auto it = this->disappeard.begin();
 		while (it != this->disappeard.end())
@@ -36,5 +36,11 @@ void update(vector<vector<int>> boxes, ObjectTracker* ot)
 		}
 
 		return this->objects;
-	}
+	}*/
+}
+
+void register_Object(ObjectTracker* ot, int cX, int cY, int nextObjectID)
+{
+	ot->nextObjectID = nextObjectID;
+
 }

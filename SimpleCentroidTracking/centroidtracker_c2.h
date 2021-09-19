@@ -22,7 +22,9 @@ typedef struct _object
 
 typedef struct _object_tracker
 {
-	Object objects[MAX_OBJECT];
+	//Object objects[MAX_OBJECT];
+	std::vector<std::pair<int, std::pair<int, int>>> objects;
+
 	int maxDisappeared;
 	int nextObjectID;
 	//std::map<int, int> disappeard;
@@ -34,6 +36,6 @@ typedef struct _object_tracker
 double calcDistance(ObjectTracker* ot);
 
 //std::vector<std::pair<int, std::pair<int, int>>> CentroidTracker::update(vector<vector<int>> boxes)
-void update(vector<vector<int>> boxes, ObjectTracker *ot);
+void update(vector<vector<int>> boxes, ObjectTracker* ot);
 
-void register_Object(ObjectTracker *ot, int cX, int cY);
+void register_Object2(ObjectTracker* ot, int cX, int cY, int nextObjectID);

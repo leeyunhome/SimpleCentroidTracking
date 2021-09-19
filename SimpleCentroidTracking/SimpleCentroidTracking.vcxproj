@@ -141,12 +141,13 @@
   <ItemGroup>
     <ClCompile Include="centroidtracker.cpp" />
     <ClCompile Include="centroidtracker_c.cpp" />
+    <ClCompile Include="centroidtracker_c2.cpp" />
     <ClCompile Include="main.cpp_orig" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="centroidtracker.h" />
-    <ClInclude Include="centroidtracker_c.h" />
+    <ClInclude Include="centroidtracker_c2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

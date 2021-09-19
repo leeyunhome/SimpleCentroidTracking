@@ -24,6 +24,9 @@
     <ClCompile Include="centroidtracker_c.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="centroidtracker_c2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -32,7 +35,7 @@
     <ClInclude Include="centroidtracker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="centroidtracker_c.h">
+    <ClInclude Include="centroidtracker_c2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
