@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <vector>
+#include <map>
 #define MAX_OBJECT 50
 
 using namespace std;
@@ -27,7 +28,8 @@ typedef struct _object_tracker
 
 	int maxDisappeared;
 	int nextObjectID;
-	//std::map<int, int> disappeard;
+	std::map<int, int> disappeard;
+	std::map<int, std::vector<std::pair<int, int>>> path_keeper;
 
 	// ...
 } ObjectTracker;
@@ -36,6 +38,6 @@ typedef struct _object_tracker
 double calcDistance(ObjectTracker* ot);
 
 //std::vector<std::pair<int, std::pair<int, int>>> CentroidTracker::update(vector<vector<int>> boxes)
-void update(vector<vector<int>> boxes, ObjectTracker* ot);
+void update2(vector<vector<int>> boxes, ObjectTracker* ot);
 
 void register_Object2(ObjectTracker* ot, int cX, int cY, int nextObjectID);

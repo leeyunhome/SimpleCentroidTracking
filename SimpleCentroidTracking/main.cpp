@@ -97,38 +97,23 @@ int main()
 
 		fprintf(stderr, "%s=%d\n", __FUNCTION__, __LINE__);
 
-		vector<pair<int, int>> inputCentroids;
-		ObjectTracker ot;
-		ot.nextObjectID = 0;
-		int nextObjectId = ot.nextObjectID;
+		ObjectTracker ot[5];
 
-		for (auto b : boxes)
-		{
-			int cX = int((b[0] + b[2]) * 0.5);
-			int cY = int((b[1] + b[3]) * 0.5);
-			inputCentroids.push_back(make_pair(cX, cY));
-		}
+		update2(boxes, ot);
 
 		fprintf(stderr, "%s=%d\n", __FUNCTION__, __LINE__);
 
-		//if we are currently not tracking any objects take the input centroids and register each of them
-		if (ot.objects.empty())
+		if (!ot->objects.empty())
 		{
-			for (auto i : inputCentroids)
+			for (auto obj : ot->objects)
 			{
-				register_Object2(&ot, i.first, i.second, nextObjectId);
+				circle(cameraFrame, Point(obj.second.first, obj.second.second), 4, Scalar(255, 0, 0), -1);
+				string ID = std::to_string(obj.first);
+				cv::putText(cameraFrame, ID, Point(obj.second.first - 10, obj.second.second - 10),
+					FONT_HERSHEY_COMPLEX, 0.5, Scalar(0, 255, 0), 2);
 			}
 		}
-		
-		fprintf(stderr, "%s=%d\n", __FUNCTION__, __LINE__);
-
-		/*for (int iter = 0; iter < ot.objects.size(); iter++)
-		{
-
-		}*/
-
-		
-		{
+		/*{
 			vector<int> objectIDs;
 			vector<pair<int, int>> objectCentroids;
 			for (auto object : ot.objects)
@@ -143,7 +128,7 @@ int main()
 				cv::putText(cameraFrame, ID, Point(object.second.first - 10, object.second.second - 10),
 					FONT_HERSHEY_COMPLEX, 0.5, Scalar(0, 255, 0), 2);
 			}
-		}
+		}*/
 		
 
 		//string ID = std::to_string(obj.first);
