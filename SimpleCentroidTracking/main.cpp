@@ -21,6 +21,8 @@ int main()
 
 	// c structure implementation
 	ObjectTracker ot;
+	ot.nextObjectID = 0;
+	ot.maxDisappeared = 20;
 
 	VideoCapture cap(0);
 
@@ -77,35 +79,13 @@ int main()
 			}
 		}
 
-		//std::cout << typeid(boxes).name() << endl;
+		update2(boxes, &ot);
 
-		// 바운딩 박스를 하나씩 꺼내서 중심(centroid) 계산
-		/*
-		for (auto b : boxes)
+		cout << "ot.maxDisappeared : " << ot.maxDisappeared << endl;
+
+		if (!ot.objects.empty())
 		{
-			int cX = int((b[0] + b[2]) * 0.5);
-			int cY = int((b[1] + b[3]) * 0.5);
-			ot.objects->cX = cX;
-			ot.objects->cY = cY;
-			//inputCentroids.push_back(make_pair(cX, cY));
-		}
-
-		printf("ot.objects->cX : %f, ot.objects->cY : %f\n", ot.objects->cX, ot.objects->cY);
-
-		circle(cameraFrame, Point(ot.objects->cX, ot.objects->cY), 4, Scalar(255, 0, 0), -1);
-		*/
-
-		fprintf(stderr, "%s=%d\n", __FUNCTION__, __LINE__);
-
-		ObjectTracker ot[5];
-
-		update2(boxes, ot);
-
-		fprintf(stderr, "%s=%d\n", __FUNCTION__, __LINE__);
-
-		if (!ot->objects.empty())
-		{
-			for (auto obj : ot->objects)
+			for (auto obj : ot.objects)
 			{
 				circle(cameraFrame, Point(obj.second.first, obj.second.second), 4, Scalar(255, 0, 0), -1);
 				string ID = std::to_string(obj.first);
@@ -113,40 +93,6 @@ int main()
 					FONT_HERSHEY_COMPLEX, 0.5, Scalar(0, 255, 0), 2);
 			}
 		}
-		/*{
-			vector<int> objectIDs;
-			vector<pair<int, int>> objectCentroids;
-			for (auto object : ot.objects)
-			{
-				objectIDs.push_back(object.first);
-				objectCentroids.push_back(make_pair(object.second.first, object.second.second));
-				const int max_string = 50;
-				char ID[max_string];
-				circle(cameraFrame, Point(object.second.first, object.second.second), 4, Scalar(255, 0, 0), -1);
-				sprintf(ID, "ID: %d", object.first);
-				std::cout << "ID : " << ID << std::endl;
-				cv::putText(cameraFrame, ID, Point(object.second.first - 10, object.second.second - 10),
-					FONT_HERSHEY_COMPLEX, 0.5, Scalar(0, 255, 0), 2);
-			}
-		}*/
-		
-
-		//string ID = std::to_string(obj.first);
-		//cv::putText(cameraFrame, ID, Point(obj.second.first - 10, obj.second.second - 10),
-		//	FONT_HERSHEY_COMPLEX, 0.5, Scalar(0, 255, 0), 2);
-
-		/*auto objects = centroidTracker->update(boxes);
-
-		if (!objects.empty())
-		{
-			for (auto obj : objects)
-			{
-				circle(cameraFrame, Point(obj.second.first, obj.second.second), 4, Scalar(255, 0, 0), -1);
-				string ID = std::to_string(obj.first);
-				cv::putText(cameraFrame, ID, Point(obj.second.first - 10, obj.second.second - 10),
-					FONT_HERSHEY_COMPLEX, 0.5, Scalar(0, 255, 0), 2);
-			}
-		}*/
 
 		imshow("Detection", cameraFrame);
 

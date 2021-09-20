@@ -4,6 +4,9 @@
 #include <stdlib.h>
 #include <vector>
 #include <map>
+#include <set>
+#include <algorithm>
+
 #define MAX_OBJECT 50
 
 using namespace std;
@@ -35,9 +38,10 @@ typedef struct _object_tracker
 } ObjectTracker;
 
 // ObjectTracker ¿¬»ê
-double calcDistance(ObjectTracker* ot);
+//double calcDistance(ObjectTracker* ot);
+static double calcDistance(double x1, double y1, double x2, double y2);
 
 //std::vector<std::pair<int, std::pair<int, int>>> CentroidTracker::update(vector<vector<int>> boxes)
 void update2(vector<vector<int>> boxes, ObjectTracker* ot);
 
-void register_Object2(ObjectTracker* ot, int cX, int cY, int nextObjectID);
+void register_Object2(ObjectTracker* ot, int cX, int cY);
